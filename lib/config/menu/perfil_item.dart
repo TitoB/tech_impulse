@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class BottomBarItem {
+class PerfilItem {
   final String title;
   final String link;
   final IconData icon;
 
-  const BottomBarItem({
+  const PerfilItem({
     required this.title,
     required this.link,
     required this.icon
   }); 
 }
 
-const appMenuItmes = <BottomBarItem>[
-  BottomBarItem(
+const appMenuItmes = <PerfilItem>[
+  PerfilItem(
     title: '', 
     link: '/', 
     icon: Icons.travel_explore_outlined,

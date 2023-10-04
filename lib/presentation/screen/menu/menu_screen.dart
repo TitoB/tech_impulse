@@ -3,7 +3,7 @@ import 'package:tech_impulse/presentation/screen/bottombar/bottom_navigator_bar.
 
 class MenuScreen extends StatelessWidget {
   static const String name = 'menu_screen';
-  
+
   const MenuScreen({super.key});
 
   @override
@@ -16,3 +16,5 @@ class MenuScreen extends StatelessWidget {
     );
   }
 }
+
+
