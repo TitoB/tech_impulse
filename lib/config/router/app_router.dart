@@ -15,5 +15,25 @@ final appRouter = GoRouter(
       name: MenuScreen.name,
       builder: (context, state) => const MenuScreen(),
     ),
+    // GoRoute(
+    //   path: '/carusel',
+    //   name: MenuScreen.name,
+    //   builder: (context, state) => const MenuScreen(),
+    // ),
+    // GoRoute(
+    //   path: '/wishlist',
+    //   name: MenuScreen.name,
+    //   builder: (context, state) => const MenuScreen(),
+    // ),
+    // GoRoute(
+    //   path: '/search',
+    //   name: MenuScreen.name,
+    //   builder: (context, state) => const MenuScreen(),
+    // ),
+    // GoRoute(
+    //   path: '/perfil',
+    //   name: MenuScreen.name,
+    //   builder: (context, state) => const MenuScreen(),
+    // ),
   ],
-  );
+);

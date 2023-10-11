@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tech_impulse/presentation/screen/carusel/carusel_screen.dart';
+import 'package:tech_impulse/presentation/screen/perfil/perfil_screen.dart';
+import 'package:tech_impulse/presentation/screen/search/search_screen.dart';
+import 'package:tech_impulse/presentation/screen/wishlist/wishlist_screen.dart';
 
 
 
@@ -10,19 +14,52 @@ class BottomBarNav extends StatefulWidget {
 }
 
 class _BottomBarNav extends State<BottomBarNav> {
-  int CurrentPageIndex = 0;
+  int currentIndex = 0;
+  String appBatTitle = 'Explorar'; //se define explorar al iniciar la varaible
+
   NavigationDestinationLabelBehavior labelBehavior =
-    NavigationDestinationLabelBehavior.alwaysShow;
+  NavigationDestinationLabelBehavior.alwaysShow;
+
+  List<Widget> screens = [
+    const CarouselSliderExample(),
+    const SearchScreen(),
+    const WishlisScreen(),
+    const ProfileScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(appBatTitle),
+        toolbarHeight: 80.0,
+      ),
+      body: IndexedStack(
+        index: currentIndex,
+        children: screens,
+      ),
       bottomNavigationBar: NavigationBar(
         labelBehavior: labelBehavior,
-        selectedIndex: CurrentPageIndex,
+        selectedIndex: currentIndex,
         onDestinationSelected: (int index) {
           setState(() {
-            CurrentPageIndex = index;
+            currentIndex = index;
+            switch (index) {
+              case 0:
+                  appBatTitle = 'Explorar';
+                break;
+              case 1:
+                  appBatTitle = 'Buscar';
+                break;
+              case 2:
+                  appBatTitle = 'Wishlist';
+                break;
+              case 3:
+                  appBatTitle = 'Perfil';
+                break;
+              default:
+
+            }
           });
         },
         destinations: const <Widget>[
