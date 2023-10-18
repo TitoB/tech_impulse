@@ -1,3 +1,5 @@
+#omitiendo la carpeta assets
+assets/images/*
 # Miscellaneous
 *.class
 *.log

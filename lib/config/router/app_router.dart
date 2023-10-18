@@ -7,8 +7,8 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      name: StartScreen.name,
-      builder: (context, state) => const StartScreen(),
+      name: InicioScreen.name,
+      builder: (context, state) => const InicioScreen(),
     ),
     GoRoute(
       path: '/menu',
