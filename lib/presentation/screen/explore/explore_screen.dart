@@ -1,127 +1,68 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:tech_impulse/data/data_cursos.dart';
+import 'package:tech_impulse/infraestructure/models/model_cursos.dart';
+import 'package:tech_impulse/presentation/screen/explore/show_curso.dart';
 
-
-class Curso {
-  //final String? title;
-  //final String? caption;
-  final String imgUrl;
-
-  Curso(
-    //this.title,
-    //this.caption,
-    this.imgUrl
-  );
-}
-
-final slides = <Curso> [
-  Curso('assets/images/curso1.PNG'),
-  Curso('assets/images/curso2.PNG'),
-  Curso('assets/images/curso3.PNG'),
-
-];
-
-final sectionInformatica = <Curso> [
-  Curso('assets/images/icurso1.PNG'),
-  Curso('assets/images/icurso2.PNG'),
-  Curso('assets/images/icurso3.PNG'),
-   Curso('assets/images/icurso4.PNG'),
-
-];
-
-final sectionMatematicas = <Curso> [
-  Curso('assets/images/mcurso1.PNG'),
-  Curso('assets/images/mcurso2.PNG'),
-  Curso('assets/images/mcurso3.PNG'),
-  Curso('assets/images/mcurso4.PNG'),
-
-];
-
-
-class ExploreScreen extends StatelessWidget {
+class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
 
   @override
+  State<ExploreScreen> createState() => _ExploreScreenState();
+}
+
+class _ExploreScreenState extends State<ExploreScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                SectionCarousel(
-                  title: 'Cursos destacados',
-                  items: slides,
-                  height: 250.5,
-                  autoPlay: true,
-                  viewportFraction: 0.8,
-                ),
-                SectionCarousel(
-                  title: 'Informatica',
-                  items: sectionInformatica,
-                ),
-                SectionCarousel(
-                  title: 'Matematicas',
-                  items: sectionMatematicas,
-                ),
-              ],
-            ),
+      backgroundColor: Colors.blueGrey[300],
+      body: Column(
+        children: [
+          SizedBox(height: 30),
+          CarouselSlider.builder(
+            itemCount: destacado.length, 
+            itemBuilder: (context, index, realIndex){
+              final carruselImage = destacado[index];
+              return SectionCarousel(destacado: destacado[index]);
+            }, 
+            options: CarouselOptions(
+              height: 200.0,
+              autoPlay: true,
+              autoPlayCurve: Curves.easeInOut,
+              enlargeCenterPage: true,
+              autoPlayInterval: Duration(seconds: 3),
+              scrollDirection: Axis.horizontal,
+            )
           ),
-        ],
+        ]
       ),
     );
   }
 }
 
 class SectionCarousel extends StatelessWidget {
-  final String title;
-  final List<Curso> items;
-  final double height;
-  final bool autoPlay;
-  final double viewportFraction;
-  
-
-  const SectionCarousel({
-    super.key,
-    required this.title, 
-    required this.items,
-    this.height = 160.0,
-    this.autoPlay = false,
-    this.viewportFraction = 0.5,
-    });
+  final Curso destacado;
+  const SectionCarousel({super.key, required this.destacado});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(title),
-        ),
-        CarouselSlider(
-          items: items.map((curso) {
-            return Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(curso.imgUrl),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            );
-          }).toList(),
-          options: CarouselOptions(
-            height: height,
-            enlargeCenterPage: true,
-            autoPlay: autoPlay,
-            aspectRatio: 16 / 9,
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enableInfiniteScroll: true,
-            autoPlayAnimationDuration: const Duration(milliseconds: 600),
-            viewportFraction: viewportFraction,
+    return SizedBox(
+      width: 400,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: InkWell(
+          onTap: () {
+            destacado.copy();
+            Navigator.of(context).push(MaterialPageRoute(builder:
+            (context) => ShowCurso(destacado: destacado,)));
+          },
+          child: FadeInImage(
+            placeholder: const AssetImage("assets/loading1.gif"),
+            image: AssetImage(destacado.imgUrl),
+            fit: BoxFit.cover,
           ),
         ),
-      ],
+        ),
     );
   }
 }
