@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:tech_impulse/presentation/screen/bottombar/bottom_navigator_bar.dart';
+import 'package:tech_impulse/presentation/widget/shared/bottom_bar.dart';
 
 class MenuScreen extends StatelessWidget {
   static const String name = 'menu_screen';

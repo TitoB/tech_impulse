@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tech_impulse/presentation/screen/carusel/carusel_screen.dart';
+import 'package:tech_impulse/presentation/screen/explore/explore_screen.dart';
 import 'package:tech_impulse/presentation/screen/perfil/perfil_screen.dart';
 import 'package:tech_impulse/presentation/screen/search/search_screen.dart';
 import 'package:tech_impulse/presentation/screen/wishlist/wishlist_screen.dart';
@@ -21,10 +21,10 @@ class _BottomBarNav extends State<BottomBarNav> {
   NavigationDestinationLabelBehavior.alwaysShow;
 
   List<Widget> screens = [
-    const CarouselSliderExample(),
+    const ExploreScreen(),
     const SearchScreen(),
     const WishlisScreen(),
-    const ProfileScreen()
+    const ProfileScreen(),
   ];
 
   @override
@@ -32,7 +32,8 @@ class _BottomBarNav extends State<BottomBarNav> {
     return Scaffold(
       appBar: AppBar(
         title: Text(appBatTitle),
-        toolbarHeight: 80.0,
+        centerTitle: true,
+        toolbarHeight: 85.5,
       ),
       body: IndexedStack(
         index: currentIndex,
@@ -58,7 +59,6 @@ class _BottomBarNav extends State<BottomBarNav> {
                   appBatTitle = 'Perfil';
                 break;
               default:
-
             }
           });
         },
