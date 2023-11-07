@@ -5,6 +5,7 @@ class Curso {
   final String imgUrl;
   final String videoUrl;
   final double price;
+  final String categoria;
 
   const Curso({
     required this.id,
@@ -13,6 +14,7 @@ class Curso {
     required this.imgUrl,
     required this.videoUrl,
     required this.price,
+    required this.categoria,
   });
 
   factory Curso.fromJson(Map<String, dynamic> json)=> Curso(
@@ -22,6 +24,7 @@ class Curso {
     imgUrl: json["imgUrl"],
     videoUrl: json["videoUrl"],
     price: json["price"], 
+    categoria: json["categoria"],
     ); 
 
   Map<String, dynamic> toJson() =>{
@@ -31,6 +34,7 @@ class Curso {
     "imgUrl": imgUrl,
     "videoUrl": videoUrl,
     "price": price,
+    "categoria": categoria,
   };
   Curso copy() => Curso(
     id: id,
@@ -39,6 +43,7 @@ class Curso {
     imgUrl: imgUrl,
     videoUrl: videoUrl,
     price: price, 
+    categoria: categoria,
   );
 }
 

@@ -1,68 +1,43 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_impulse/data/data_cursos.dart';
-import 'package:tech_impulse/infraestructure/models/model_cursos.dart';
-import 'package:tech_impulse/presentation/screen/explore/show_curso.dart';
+import 'package:tech_impulse/presentation/widget/cursos/cursos_carusel.dart';
 
-class ExploreScreen extends StatefulWidget {
+class ExploreScreen extends StatelessWidget {
+
   const ExploreScreen({super.key});
 
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
-}
-
-class _ExploreScreenState extends State<ExploreScreen> {
-  @override
   Widget build(BuildContext context) {
+    final titleStyle = Theme.of(context).textTheme.titleLarge;
+    final categorias = ['Destacado', 'Informatica', 'Matematicas']; //se declara el nombre de la categoria tiene que ser igual al nom de categoria del curso
     return Scaffold(
-      backgroundColor: Colors.blueGrey[300],
-      body: Column(
-        children: [
-          SizedBox(height: 30),
-          CarouselSlider.builder(
-            itemCount: destacado.length, 
-            itemBuilder: (context, index, realIndex){
-              final carruselImage = destacado[index];
-              return SectionCarousel(destacado: destacado[index]);
-            }, 
-            options: CarouselOptions(
-              height: 200.0,
-              autoPlay: true,
-              autoPlayCurve: Curves.easeInOut,
-              enlargeCenterPage: true,
-              autoPlayInterval: Duration(seconds: 3),
-              scrollDirection: Axis.horizontal,
-            )
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              categorias.map((categoria) {    //se identifica el nombre de categoria del curso y se agrega a su seccion especifica
+                return Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          categoria, 
+                          style: titleStyle,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+
+                     ExploreSCarusel(cursos: destacado, categoria: categoria),
+                  ]
+                );
+              }).toList(),
+            ),
           ),
-        ]
+        ],
       ),
-    );
-  }
-}
-
-class SectionCarousel extends StatelessWidget {
-  final Curso destacado;
-  const SectionCarousel({super.key, required this.destacado});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 400,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: InkWell(
-          onTap: () {
-            destacado.copy();
-            Navigator.of(context).push(MaterialPageRoute(builder:
-            (context) => ShowCurso(destacado: destacado,)));
-          },
-          child: FadeInImage(
-            placeholder: const AssetImage("assets/loading1.gif"),
-            image: AssetImage(destacado.imgUrl),
-            fit: BoxFit.cover,
-          ),
-        ),
-        ),
     );
   }
 }

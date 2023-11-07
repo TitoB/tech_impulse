@@ -49,13 +49,12 @@ class _ShowCursoState extends State<ShowCurso> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
-              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+              //margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
                 child: AspectRatio(
-                  aspectRatio: _videoPlayerController.value.aspectRatio,
+                  aspectRatio: 16 / 10,
                   child: VideoPlayer(_videoPlayerController),
                 ),
               ),

@@ -78,8 +78,7 @@ class _InicioScreenState extends State<InicioScreen> {
               child: 
               ElevatedButton.icon(
               onPressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder:
-                (context) => const MenuScreen()));
+                
               }, 
               icon: const Icon(Icons.rocket_launch_sharp), 
               label: const Text('Iniciar Sesión'),
